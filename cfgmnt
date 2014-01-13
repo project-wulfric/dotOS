@@ -1,0 +1,22 @@
+#! /bin/sh
+apt-get update
+apt-get install dialog dbus
+dbus-uuidgen > /var/lib/dbus/machine-id
+apt-key add /home/Repo.keys
+apt-get update
+apt-get install live-boot syslinux
+apt-get install linux-image-amd64 && apt-get install -q linux-image-amd64
+apt-get install dselect
+dselect update
+dpkg --set-selections < /home/Package.list
+dselect install
+apt-get clean
+apt-get install mingetty
+echo '# getty autologin
+# 1:2345:respawn:/sbin/getty 38400 tty1
+' >> /etc/inittab 
+rm -v ../mount.sh
+rm -v /var/lib/dbus/machine-id && rm -rf /tmp/*
+umount -v /proc /sys /dev/pts
+exit
+
