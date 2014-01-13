@@ -6,6 +6,6 @@ i386/
 =======
 # Build and Release Folders
 *.iso
-*binary/*
+binary/*
 
 >>>>>>> d4de8e41d05a9b0956ce4f8a6bbe51fd6300a77c
